@@ -30,7 +30,7 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for (int i = 0; i < userCount; i++){
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().equalsIgnoreCase(name)){
                 return users[i];
             }
         }
@@ -51,7 +51,7 @@ public class Network {
                 userCount++;
                 return true;
             }
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().equalsIgnoreCase(name)){
                 return false;
             }
         }
@@ -65,7 +65,7 @@ public class Network {
         User user1 = getUser(name1);
         User user2 = getUser(name2);
 
-        if (user1 == null || user2 == null || name1.equals(name2)){
+        if (user1 == null || user2 == null || name1.equalsIgnoreCase(name2)){
             return false;
         }
         user1.addFollowee(name2);
@@ -98,9 +98,9 @@ public class Network {
         if (userCount == 0){
             return null;
         }
-        User most_popular = null;
-        int max_follow = 0; //The number of followers the current most popular user has
-        for (int i = 0; i < userCount; i++){
+        User most_popular = users[0];
+        int max_follow = followeeCount(users[0].getName()); //The number of followers the current most popular user has
+        for (int i = 1; i < userCount; i++){
             int curr_user_count = followeeCount(users[i].getName());
             if (curr_user_count > max_follow){
                 most_popular = users[i];
@@ -115,7 +115,7 @@ public class Network {
     private int followeeCount(String name) {
         int follow_count = 0;
         for (int i = 0; i < userCount; i++){
-            if (!users[i].getName().equals(name) && users[i].follows(name)){
+            if (!users[i].getName().equalsIgnoreCase(name) && users[i].follows(name)){
                 follow_count++;
             }
         }
