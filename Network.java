@@ -68,6 +68,14 @@ public class Network {
         if (user1 == null || user2 == null || name1.equalsIgnoreCase(name2)){
             return false;
         }
+
+        String[] user_followee = user1.getfFollows();
+        for (int i = 0; i < user1.getfCount(); i++){
+            if (user_followee[i].equalsIgnoreCase(name2)){
+                return false;
+            }
+        }
+        
         user1.addFollowee(name2);
         user2.addFollowee(name1);
         return true;
@@ -79,7 +87,7 @@ public class Network {
         User mostRecommendedUserToFollow = null;
         int max_mutuals = 0;
         for (int i = 0; i < userCount; i++){
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().equalsIgnoreCase(name)){
                 continue;
             }
             int mutuals = users[i].countMutual(getUser(name));
