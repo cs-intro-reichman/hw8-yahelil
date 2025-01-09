@@ -110,7 +110,7 @@ public class Network {
         int max_follow = followeeCount(users[0].getName()); //The number of followers the current most popular user has
         for (int i = 1; i < userCount; i++){
             int curr_user_count = followeeCount(users[i].getName());
-            if (curr_user_count > max_follow){
+            if (curr_user_count >= max_follow){
                 most_popular = users[i];
                 max_follow = curr_user_count;
             }
