@@ -75,7 +75,7 @@ public class Network {
                 return false;
             }
         }
-        
+
         user1.addFollowee(name2);
         user2.addFollowee(name1);
         return true;
@@ -127,6 +127,7 @@ public class Network {
                 follow_count++;
             }
         }
+        System.out.println(name + " has " + follow_count + " people following him");
         return follow_count;
     }
 
