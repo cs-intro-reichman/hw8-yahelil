@@ -117,6 +117,7 @@ public class Network {
                 max_follow = curr_user_count;
             }
         }
+        System.out.println("case: " + case_count + "\n");
         return most_popular.getName();
     }
 
@@ -130,7 +131,7 @@ public class Network {
                 follow_count++;
             }
         }
-        System.out.println("case: " + case_count + "\n" + name + " has " + follow_count + " people following him");
+        System.out.println(name + " has " + follow_count + " people following him");
         return follow_count;
     }
 
