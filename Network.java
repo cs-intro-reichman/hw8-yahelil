@@ -5,6 +5,7 @@ public class Network {
     // Fields
     private User[] users;  // the users in this network (an array of User objects)
     private int userCount; // actual number of users in this network
+    private int case_count;
 
     /** Creates a network with a given maximum number of users. */
     public Network(int maxUserCount) {
@@ -20,6 +21,7 @@ public class Network {
         users[1] = new User("Bar");
         users[2] = new User("Baz");
         userCount = 3;
+        case_count = 0;
     }
 
     public int getUserCount() {
@@ -110,7 +112,7 @@ public class Network {
         int max_follow = followeeCount(users[0].getName()); //The number of followers the current most popular user has
         for (int i = 1; i < userCount; i++){
             int curr_user_count = followeeCount(users[i].getName());
-            if (curr_user_count >= max_follow){
+            if (curr_user_count > max_follow){
                 most_popular = users[i];
                 max_follow = curr_user_count;
             }
@@ -121,13 +123,14 @@ public class Network {
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
+        case_count++;
         int follow_count = 0;
         for (int i = 0; i < userCount; i++){
             if (!users[i].getName().equalsIgnoreCase(name) && users[i].follows(name)){
                 follow_count++;
             }
         }
-        System.out.println(name + " has " + follow_count + " people following him");
+        System.out.println("case: " + case_count + "\n" + name + " has " + follow_count + " people following him");
         return follow_count;
     }
 
