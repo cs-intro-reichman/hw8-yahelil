@@ -77,9 +77,7 @@ public class Network {
                 return false;
             }
         }
-
         user1.addFollowee(name2);
-        user2.addFollowee(name1);
         return true;
     }
     
@@ -114,8 +112,7 @@ public class Network {
     
         for (int i = 1; i < userCount; i++) {
             int currentFollowCount = followeeCount(users[i].getName());
-            if (currentFollowCount > maxFollowCount ||
-                (currentFollowCount == maxFollowCount && users[i].getName().compareToIgnoreCase(mostPopular.getName()) < 0)) {
+            if (currentFollowCount > maxFollowCount) {
                 mostPopular = users[i];
                 maxFollowCount = currentFollowCount;
             }
